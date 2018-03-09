@@ -17,16 +17,20 @@ treeMethods.addChild = function(value) {
 
 
 treeMethods.contains = function(value) { //changes from targetNode
+    // var ChilrenLength = node.children.length
+    //debugger;
+    //var directChilren = this.chilren
+    var result = false;
+ 
     if(this.value === value) {
-      return true;
-    } else if (this.children.length > 0) {
-      for (var i = 0; i < this.children.length; i++) {
-        //var pass = this.children[i]
-        return this.children[i].contains(value);
-        
-      }
+      result = true;
     }
-    return false;
+
+    for (var i = 0; i < this.children.length; i++) {
+        result = result || this.children[i].contains(value);
+    }
+  
+    return result;
 };
 
 
