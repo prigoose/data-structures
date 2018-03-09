@@ -6,18 +6,45 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
     var node = Node(value);
-    this.tail = node;
+    if (this.tail !== null) {
+      this.tail.next = node;
+      this.tail = node
+      } else if (this.tail === null) {
+      this.tail = node;
+      }
     if (this.head === null) {
       this.head = node;
     }
+    //this.tail points to most recent node
+    //this.tail.next should point to current 
   };
 
   list.removeHead = function() {
-    
+    //save former head
+    var formerHead = this.head.value;
+    //point head to the former head's 'next' value
+    this.head = this.head.next;
+    //return former head
+    return formerHead;
   };
 
   list.contains = function(target) {
+  var helper = function(node) {
+      var test = node.value;
+      if (node.value === target) {
+        return true;
+      } else if (node.value !== target && node.next === null) {
+        return false;
+      } else {
+        return helper(node.next);
+      }
+    
+    }
+  return helper(this.head);
   };
+
+
+
 
   return list;
 };
