@@ -46,8 +46,4 @@ var extend = function(to, from) {
  * Complexity: What is the time complexity of the above functions?
  */
 
-//var oak = Tree(5);
-//tree.addChild(oak);
-//tree.value
-
-//oak.contains(5)
+//Linear time complexity because it's looking through every single child.
