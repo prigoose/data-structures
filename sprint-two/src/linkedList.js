@@ -30,7 +30,6 @@ var LinkedList = function() {
 
   list.contains = function(target) {
   var helper = function(node) {
-      var test = node.value;
       if (node.value === target) {
         return true;
       } else if (node.value !== target && node.next === null) {
