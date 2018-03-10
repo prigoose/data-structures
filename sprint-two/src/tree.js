@@ -16,10 +16,7 @@ treeMethods.addChild = function(value) {
 
 
 
-treeMethods.contains = function(value) { //changes from targetNode
-    // var ChilrenLength = node.children.length
-    //debugger;
-    //var directChilren = this.chilren
+treeMethods.contains = function(value) {
     var result = false;
  
     if(this.value === value) {
