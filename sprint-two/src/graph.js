@@ -56,3 +56,4 @@ Graph.prototype.forEachNode = function(cb) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// mostly constant, but based on line 22 it will sometimes be linear. Could be constant with re-factoring???
