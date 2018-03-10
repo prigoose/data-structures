@@ -1,8 +1,8 @@
 var BinarySearchTree = function(value) {
   var newTree = {};
   newTree.value = value;
-  newTree.leftNode;
-  newTree.rightNode;
+  newTree.leftNode = null;
+  newTree.rightNode = null;
   extend(newTree, binaryTreeMethods);
   return newTree;
 };
@@ -11,12 +11,24 @@ var binaryTreeMethods = {}
 
 binaryTreeMethods.insert = function(inputValue) {
   var newNode = BinarySearchTree(inputValue);
-  if (this.value > newNode.value && this.leftNode.value === undefined) {
-    this.leftNode = newNode;
+  
+  var addLeftRight = function(node) {
+  if (this.value > node.value) {
+    if (this.leftNode.value === null) {
+      this.leftNode = node;
+    } else {
+      leftNode.addLeftRight(inputValue);
+    }
   }
-  if (this.value < newNode.value) {
-    this.rightNode = newNode;
+  if (this.value < node.value) {
+    if (this.rightNode.value === null) {
+      this.rightNode = node;
+    } else {
+      rightNode.addLeftRight(inputValue);
+    }
   }
+}
+  addLeftRight(newNode);
 }
 
 binaryTreeMethods.left = function(inputValue) {
