@@ -1,8 +1,8 @@
 var BinarySearchTree = function(value) {
   var newTree = {};
   newTree.value = value;
-  newTree.leftNode = null;
-  newTree.rightNode = null;
+  newTree.left = null;
+  newTree.right = null;
   extend(newTree, binaryTreeMethods);
   return newTree;
 };
@@ -10,88 +10,54 @@ var BinarySearchTree = function(value) {
 var binaryTreeMethods = {}
 
 binaryTreeMethods.insert = function(inputValue) {
-  var newNode = BinarySearchTree(inputValue);
-  
-  var addLeftRight = function(node) {
-  if (this.value > node.value) {
-    if (this.leftNode.value === null) {
-      this.leftNode = node;
-    } else {
-      leftNode.addLeftRight(inputValue);
-    }
-  }
-  if (this.value < node.value) {
-    if (this.rightNode.value === null) {
-      this.rightNode = node;
-    } else {
-      rightNode.addLeftRight(inputValue);
-    }
-  }
-}
-  addLeftRight(newNode);
-}
-
-binaryTreeMethods.left = function(inputValue) {
   if (this.value > inputValue) {
-    this.leftNode = inputValue
+    if (this.left === null) {
+      this.left = BinarySearchTree(inputValue);
+    } else {
+      this.left.insert(inputValue);
+    }
   }
-}
-
-binaryTreeMethods.right = function(value) {
   if (this.value < inputValue) {
-    this.rightNode = inputValue
+    if (this.right === null) {
+      this.right = BinarySearchTree(inputValue);
+    } else {
+      this.right.insert(inputValue);
+    }
   }
-}
+};
 
 binaryTreeMethods.contains = function(inputValue) {
   var result = false;
   
-  if (this.value = inputValue) {
-    result = true
+  if (this.value === inputValue) {
+    result = true;
   }
 
   if (this.value > inputValue) {
-    result = result || contains(this.leftNode);
+    if (this.left !== null) {
+      result = result || this.left.contains(inputValue);
+    }
   }
 
   if (this.value < inputValue) {
-    result = result || contains(this.rightNode);
+    if (this.right !== null) {
+      result = result || this.right.contains(inputValue);
+    }
   }
+
   return result;
 }
 
-binaryTreeMethods.depthFirstLog = function() {
+binaryTreeMethods.depthFirstLog = function(callback) {
+  callback(this.value);
+  if (this.left !== null) {
+    this.left.depthFirstLog(callback);
+  }
   
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  if (this.right !== null) {
+    this.right.depthFirstLog(callback);
+  }
+};
 
 
 
@@ -99,3 +65,4 @@ binaryTreeMethods.depthFirstLog = function() {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// insert is log. Contains is linear due to our implementation. Depth first log is linear by necessity.
